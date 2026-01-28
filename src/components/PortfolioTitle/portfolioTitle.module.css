@@ -1,0 +1,26 @@
+.wrapper {
+    position: relative;
+    width: min(1050px, 94vw);
+    margin-inline: auto;
+}
+
+.title {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.selection {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: auto;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+}
+
+@media (max-width: 768px) {
+    .selection {
+        display: none;
+    }
+}

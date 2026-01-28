@@ -1,0 +1,485 @@
+.hero {
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+
+  --ui-pad-top: calc(18px + var(--safe-top));
+  --ui-pad-right: calc(18px + var(--safe-right));
+  --ui-pad-bottom: calc(18px + var(--safe-bottom));
+  --ui-pad-left: calc(18px + var(--safe-left));
+
+  --c-blue: #3a39ff;
+  --c-cyan: #ade6ed;
+  --c-green: #d4ff33;
+  --c-purple: #dcbcf3;
+  --c-orange: #ff5b23;
+  --c-cream: #fff9f2;
+
+  --glass-highlight-1: rgba(71, 71, 71, 0.16);
+  --glass-highlight-2: rgba(0, 0, 0, 0.08);
+  --glass-stroke-soft: rgba(255, 255, 255, 0.07);
+
+  --mx: 0px;
+  --my: 0px;
+
+  min-height: 100svh;
+  position: relative;
+  overflow: hidden;
+
+  background: transparent;
+
+  display: grid;
+  place-items: center;
+}
+
+/* ===== Corner labels ===== */
+.topLeft,
+.topRight {
+  position: absolute;
+  top: calc(var(--ui-pad-top) + 8px);
+
+  font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: -0.015em;
+  font-size: 14px;
+  line-height: 1;
+
+  z-index: 12;
+  color: var(--text-dark, #191919);
+  opacity: 0.95;
+}
+
+.topLeft {
+  left: calc(var(--ui-pad-left) + 14px);
+}
+
+.topRight {
+  right: calc(var(--ui-pad-right) + 14px);
+}
+
+/* ===== Desktop nav ===== */
+.navPill {
+  position: absolute;
+  top: calc(var(--ui-pad-top) + 14px);
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex;
+  gap: 18px;
+  padding: 16px 22px;
+  border-radius: 999px;
+
+  background: rgba(0, 0, 0, 0.602);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  z-index: 12;
+  overflow: hidden;
+}
+
+.navPill::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+
+  background:
+    radial-gradient(120% 90% at 25% 0%, var(--glass-highlight-1), transparent 55%),
+    radial-gradient(90% 70% at 85% 10%, var(--glass-highlight-2), transparent 60%);
+  opacity: 0.9;
+  mix-blend-mode: screen;
+}
+
+.navPill::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  pointer-events: none;
+  border: 1px solid var(--glass-stroke-soft);
+  opacity: 0.9;
+}
+
+/* Nav item + shine hover */
+.navItem {
+  position: relative;
+  color: var(--c-cream);
+  font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-weight: 500;
+  opacity: 0.92;
+  white-space: nowrap;
+  font-size: 14px;
+  text-decoration: none;
+
+  padding: 8px 10px;
+  border-radius: 999px;
+
+  isolation: isolate;
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+.navItem::after {
+  content: "";
+  position: absolute;
+  inset: -2px -6px;
+  border-radius: 999px;
+  z-index: -1;
+  opacity: 0;
+
+  background: linear-gradient(
+    90deg,
+    var(--c-blue),
+    var(--c-cyan),
+    var(--c-green),
+    var(--c-purple),
+    var(--c-orange),
+    var(--c-blue)
+  );
+  background-size: 220% 220%;
+
+  filter: blur(10px);
+  transform: scale(0.98);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.navItem:hover {
+  opacity: 1;
+  transform: translateY(-0.5px);
+  text-shadow:
+    0 0 10px rgba(173, 230, 237, 0.55),
+    0 0 16px rgba(58, 57, 255, 0.35),
+    0 0 22px rgba(255, 91, 35, 0.25);
+}
+
+.navItem:hover::after {
+  opacity: 0.75;
+  transform: scale(1);
+  animation: navShine 650ms ease-in-out infinite alternate;
+}
+
+@keyframes navShine {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* ===== Mobile hamburger + dropdown ===== */
+.mobileMenuBtn {
+  display: none;
+  position: absolute;
+  top: calc(var(--ui-pad-top) + 6px);
+  right: calc(var(--ui-pad-right) + 8px);
+  z-index: 13;
+
+  width: 56px;
+  height: 44px;
+  border: none;
+  border-radius: 999px;
+
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  color: var(--c-cream);
+  cursor: pointer;
+}
+
+.hamburger {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.mobileMenu {
+  position: absolute;
+  top: calc(var(--ui-pad-top) + 56px);
+  right: calc(var(--ui-pad-right) + 8px);
+  z-index: 13;
+
+  padding: 10px;
+  border-radius: 16px;
+
+  background: rgba(0, 0, 0, 0.60);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  display: grid;
+  gap: 6px;
+  min-width: 170px;
+
+  transform-origin: top right;
+  animation: menuDrop 220ms ease-out forwards;
+}
+
+@keyframes menuDrop {
+  from { opacity: 0; transform: translateY(-8px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.mobileMenuItem {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 12px;
+
+  color: var(--c-cream);
+  font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-weight: 500;
+  opacity: 0.95;
+  font-size: 14px;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.mobileMenuItem:active {
+  transform: scale(0.99);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ===== Content ===== */
+.content {
+  position: relative;
+  z-index: 6;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  gap: 10px;
+  padding: 0 16px;
+}
+
+.smallTitle {
+  font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif !important;
+  font-weight: 800 !important;
+  font-style: italic !important;
+  letter-spacing: -0.04em !important;
+  text-transform: uppercase;
+
+  margin: 0;
+  line-height: 1;
+  color: var(--text-dark, #191919);
+  font-size: clamp(16px, 2vw, 28px);
+
+  display: inline-block;
+}
+
+.smallTitle:hover {
+  color: transparent;
+  background: linear-gradient(
+    90deg,
+    var(--c-blue),
+    var(--c-cyan),
+    var(--c-green),
+    var(--c-purple),
+    var(--c-orange),
+    var(--c-blue)
+  );
+  background-size: 260% 260%;
+  background-clip: text;
+  -webkit-background-clip: text;
+
+  animation: titleShine 900ms ease-in-out infinite alternate;
+
+  filter:
+    drop-shadow(0 0 10px rgba(173, 230, 237, 0.25))
+    drop-shadow(0 0 14px rgba(58, 57, 255, 0.18));
+}
+
+@keyframes titleShine {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+.portfolioWrap {
+  width: min(1100px, 88vw);
+}
+
+.year {
+  margin: 0;
+  font-weight: 500;
+  font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--text-dark, #191919);
+  font-size: clamp(14px, 1.2vw, 20px);
+}
+
+/* ===== Mini Squares (MiniSquares component uses these classes) ===== */
+.miniSquaresWrap {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.miniSquare {
+  position: absolute;
+  opacity: 0.9;
+  animation: miniGlitch 2.4s infinite steps(2, end);
+  will-change: transform, opacity, filter;
+}
+
+@keyframes miniGlitch {
+  0% { opacity: 0.85; filter: none; }
+  8% { opacity: 0.15; transform: translate(-50%, -50%) translate(1px, -1px); }
+  12% { opacity: 0.95; transform: translate(-50%, -50%) translate(-1px, 1px); }
+  18% { opacity: 0.55; filter: drop-shadow(2px 0 0 rgba(0, 255, 255, 0.25)); }
+  24% { opacity: 0.9; filter: drop-shadow(-2px 0 0 rgba(58, 57, 255, 0.25)); }
+  40% { opacity: 0.25; }
+  52% { opacity: 0.95; transform: translate(-50%, -50%); filter: none; }
+  100% { opacity: 0.85; filter: none; }
+}
+
+/* ===== Folders ===== */
+.foldersLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.folder {
+  position: absolute;
+  user-select: none;
+  will-change: transform, filter;
+  filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.18));
+}
+
+.folderBlue {
+  width: clamp(260px, 22vw, 520px);
+  left: -6%;
+  top: 34%;
+  transform: translate(calc(var(--mx) * 1.1), calc(var(--my) * 0.9)) rotate(-2deg);
+}
+
+.folderCyan {
+  width: clamp(140px, 12vw, 240px);
+  left: 64%;
+  top: 10%;
+  transform: translate(calc(var(--mx) * -1.3), calc(var(--my) * 1.2)) rotate(-14deg);
+}
+
+.folderOrange {
+  width: clamp(200px, 18vw, 360px);
+  left: 86%;
+  top: 12%;
+  transform: translate(calc(var(--my) * 1.1), calc(var(--mx) * -0.9)) rotate(4deg);
+}
+
+.folderGreen {
+  width: clamp(150px, 14vw, 260px);
+  left: 28%;
+  top: 70%;
+  transform: translate(calc(var(--mx) * 0.7), calc(var(--my) * -1.2)) rotate(0deg);
+}
+
+.folderGrey {
+  width: clamp(120px, 10vw, 200px);
+  left: 78%;
+  top: 72%;
+  transform: translate(calc(var(--mx) * -0.9), calc(var(--my) * -0.8)) rotate(14deg);
+}
+
+.folderPink {
+  width: clamp(120px, 10vw, 200px);
+  left: 26%;
+  top: 22%;
+  transform: translate(calc(var(--my) * -1), calc(var(--mx) * 0.8)) rotate(0deg);
+}
+
+
+.folderBlue,
+.folderOrange {
+  filter: blur(15px) drop-shadow(0 18px 28px rgba(0, 0, 0, 0.12));
+  opacity: 0.95;
+}
+
+.folderPink,
+.folderGrey {
+  filter: blur(6px) drop-shadow(0 18px 28px rgba(0, 0, 0, 0.12));
+  opacity: 0.95;
+}
+
+
+@media (min-width: 1200px) {
+  .folderBlue,
+  .folderOrange {
+    filter: blur(11px) drop-shadow(0 18px 28px rgba(0, 0, 0, 0.10));
+  }
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 768px) {
+  .miniSquaresWrap {
+    display: none;
+  }
+
+  .navPill {
+    display: none;
+  }
+
+  .mobileMenuBtn {
+    display: grid;
+    place-items: center;
+  }
+
+  .portfolioWrap {
+    width: min(520px, 92vw);
+  }
+
+  .topLeft,
+  .topRight {
+    top: auto;
+    bottom: calc(var(--ui-pad-bottom) + 10px);
+    font-size: 13px;
+    opacity: 0.9;
+  }
+
+  .topLeft {
+    left: calc(var(--ui-pad-left) + 10px);
+  }
+
+  .topRight {
+    right: calc(var(--ui-pad-right) + 10px);
+  }
+
+  /* Less blur on mobile */
+  .folderBlue,
+  .folderOrange {
+    filter: blur(8px) drop-shadow(0 14px 22px rgba(0, 0, 0, 0.10));
+  }
+
+  .folderBlue {
+    width: clamp(260px, 72vw, 420px);
+    left: -18%;
+    top: 40%;
+  }
+
+  .folderCyan {
+    width: clamp(140px, 44vw, 220px);
+    left: 58%;
+    top: 12%;
+  }
+
+  .folderOrange {
+    width: clamp(170px, 52vw, 300px);
+    left: 64%;
+    top: 22%;
+  }
+
+  .folderPink {
+    width: clamp(120px, 36vw, 200px);
+    left: 18%;
+    top: 22%;
+  }
+
+  .folderGreen {
+    width: clamp(150px, 46vw, 250px);
+    left: 22%;
+    top: 70%;
+  }
+
+  .folderGrey {
+    width: clamp(120px, 42vw, 220px);
+    left: 62%;
+    top: 74%;
+  }
+}

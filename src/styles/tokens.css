@@ -1,0 +1,16 @@
+:root {
+    /* Brand / Text */
+    --text-dark: #191919;
+    --text-light: #fff9f2;
+
+    /* Fonts */
+    --font-main: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+    /* Layout */
+    --container: 1120px;
+    --radius-xl: 28px;
+
+    /* Motion */
+    --dur-fast: 200ms;
+    --dur-med: 500ms;
+}
