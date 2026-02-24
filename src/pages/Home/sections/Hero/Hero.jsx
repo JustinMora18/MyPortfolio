@@ -13,7 +13,6 @@ import MiniSquares from "./MiniSquares";
 import PortfolioTitle from "../../../../components/PortfolioTitle/PortfolioTitle";
 import SideVignette from "../../../../components/SideVignette/SideVignette";
 
-
 export default function Hero() {
   const heroRef = useRef(null);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -83,19 +82,14 @@ export default function Hero() {
     <motion.section
       ref={heroRef}
       className={styles.hero}
-      style={{
-        "--mx": mx,
-        "--my": my,
-      }}
+      style={{ "--mx": mx, "--my": my }}
       onMouseMove={onMove}
       onMouseLeave={onLeave}
-      onClick={() => setMenuOpen(false)} 
+      onClick={() => setMenuOpen(false)}
     >
-      {/* Top labels */}
       <div className={styles.topLeft}>JM</div>
       <div className={styles.topRight}>Portfolio</div>
 
-      {/* Desktop nav */}
       <nav className={styles.navPill} aria-label="Primary">
         <a className={styles.navItem} href="#home">Home</a>
         <a className={styles.navItem} href="#about">About</a>
@@ -106,7 +100,6 @@ export default function Hero() {
         <a className={styles.navItem} href="#contact">Contact</a>
       </nav>
 
-      {/* Mobile hamburger */}
       <button
         className={styles.mobileMenuBtn}
         type="button"
@@ -120,7 +113,6 @@ export default function Hero() {
         <span className={styles.hamburger}>{menuOpen ? "✕" : "☰"}</span>
       </button>
 
-      {/* Mobile dropdown */}
       {menuOpen && (
         <div className={styles.mobileMenu} onClick={(e) => e.stopPropagation()}>
           <a className={styles.mobileMenuItem} href="#home" onClick={() => setMenuOpen(false)}>Home</a>
@@ -133,10 +125,8 @@ export default function Hero() {
         </div>
       )}
 
-
       <MiniSquares />
 
-      {/* Folders (once) */}
       <div className={styles.foldersLayer} aria-hidden="true">
         {folders.map((f, i) => (
           <img
@@ -149,7 +139,6 @@ export default function Hero() {
         ))}
       </div>
 
-      {/* Center title */}
       <div className={styles.content}>
         <motion.p
           className={styles.smallTitle}
@@ -178,6 +167,7 @@ export default function Hero() {
           2026
         </motion.p>
       </div>
+
       <SideVignette />
     </motion.section>
   );

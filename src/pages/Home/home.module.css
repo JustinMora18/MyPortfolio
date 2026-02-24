@@ -1,0 +1,71 @@
+.page {
+    position: relative;
+    isolation: isolate;
+}
+
+.heroWrap {
+    position: relative;
+    z-index: 1;
+}
+
+.aboutWrap {
+    position: relative;
+    z-index: 2;
+}
+
+.seam {
+    position: relative;
+    height: 0;
+    z-index: 999;
+    pointer-events: none;
+}
+
+.spikes {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    transform: translateY(calc(-50% + var(--spike-nudge)));
+    pointer-events: none;
+    z-index: 999;
+
+    /* DEFAULT: Desktop */
+    --spike-h: clamp(120px, 14vw, 210px);
+    --spike-w: clamp(900px, 62vw, 1300px);
+    --spike-side: -22%;
+    --spike-nudge: -8px;
+}
+
+@media (min-width: 1025px) {
+    .spikes {
+        --spike-nudge: clamp(18px, 1.6vw, 34px);
+    }
+}
+
+/* iPad / tablet PORTRAIT */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
+    .spikes {
+        --spike-h: clamp(92px, 12vw, 150px);
+        --spike-w: clamp(560px, 71vw, 760px);
+        --spike-side: -26%;
+        --spike-nudge: -8px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .spikes {
+        --spike-h: clamp(78px, 22vw, 120px);
+        --spike-w: clamp(260px, 78vw, 360px);
+        --spike-side: -24%;
+        --spike-nudge: -14px;
+    }
+}
+
+/* Extra small phones */
+@media (max-width: 420px) {
+    .spikes {
+        --spike-w: clamp(240px, 86vw, 330px);
+        --spike-side: -28%;
+    }
+}

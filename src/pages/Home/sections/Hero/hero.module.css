@@ -31,6 +31,7 @@
 
   display: grid;
   place-items: center;
+
 }
 
 /* ===== Corner labels ===== */
@@ -240,7 +241,7 @@
 /* ===== Content ===== */
 .content {
   position: relative;
-  z-index: 6;
+  z-index: 60;
   display: grid;
   place-items: center;
   text-align: center;
@@ -291,8 +292,22 @@
 }
 
 .portfolioWrap {
-  width: min(1100px, 88vw);
+  max-width: 92vw; /* safety */
 }
+
+.portfolioWrap > * {
+  max-width: 100%;
+  width: 100%;
+}
+
+.portfolioWrap :global(svg),
+.portfolioWrap :global(img) {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 
 .year {
   margin: 0;
@@ -398,7 +413,6 @@
   opacity: 0.95;
 }
 
-
 @media (min-width: 1200px) {
   .folderBlue,
   .folderOrange {
@@ -419,6 +433,12 @@
   .mobileMenuBtn {
     display: grid;
     place-items: center;
+    width: 46px;
+    height: 36px;
+  }
+
+  .hamburger {
+    font-size: 18px;
   }
 
   .portfolioWrap {
@@ -427,10 +447,7 @@
 
   .topLeft,
   .topRight {
-    top: auto;
-    bottom: calc(var(--ui-pad-bottom) + 10px);
-    font-size: 13px;
-    opacity: 0.9;
+    display: none;
   }
 
   .topLeft {
@@ -441,45 +458,55 @@
     right: calc(var(--ui-pad-right) + 10px);
   }
 
-  /* Less blur on mobile */
+  /* reduce blur intensity slightly for realism */
   .folderBlue,
   .folderOrange {
-    filter: blur(8px) drop-shadow(0 14px 22px rgba(0, 0, 0, 0.10));
+    filter: blur(9px) drop-shadow(0 14px 22px rgba(0,0,0,0.12));
   }
 
+  .folderGrey,
+  .folderPink {
+    filter: blur(6px) drop-shadow(0 14px 22px rgba(0,0,0,0.12));
+  }
+
+  /* BLUE — left large, intersects title */
   .folderBlue {
-    width: clamp(260px, 72vw, 420px);
-    left: -18%;
-    top: 40%;
+    width: clamp(150px, 48vw, 240px);
+    left: -24%;
+    top: 36%;
   }
 
+  /* CYAN — small top right */
   .folderCyan {
-    width: clamp(140px, 44vw, 220px);
-    left: 58%;
+    width: clamp(90px, 26vw, 140px);
+    left: 30%;
+    top: 25%;
+  }
+
+  /* ORANGE — blurred foreground right */
+  .folderOrange {
+    width: clamp(130px, 40vw, 210px);
+    left: 72%;
+    top: 18%;
+  }
+
+  /* PINK — small top left */
+  .folderPink {
+    width: clamp(90px, 26vw, 140px);
+    left: 14%;
     top: 12%;
   }
 
-  .folderOrange {
-    width: clamp(170px, 52vw, 300px);
-    left: 64%;
-    top: 22%;
-  }
-
-  .folderPink {
-    width: clamp(120px, 36vw, 200px);
-    left: 18%;
-    top: 22%;
-  }
-
-  .folderGreen {
-    width: clamp(150px, 46vw, 250px);
-    left: 22%;
-    top: 70%;
-  }
-
+  /* GREEN — centered bottom */
+.folderGreen {
+  width: clamp(110px, 34vw, 180px);
+  left: 16%;
+  top: 64%;
+}
+  /* GREY — bottom right */
   .folderGrey {
-    width: clamp(120px, 42vw, 220px);
-    left: 62%;
-    top: 74%;
+    width: clamp(95px, 28vw, 150px);
+    left: 70%;
+    top: 64%;
   }
 }

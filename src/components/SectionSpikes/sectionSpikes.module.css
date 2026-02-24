@@ -1,0 +1,38 @@
+.wrap {
+  position: relative;
+  height: var(--spike-h, 160px);
+  pointer-events: none;
+  overflow: visible;
+}
+
+.left,
+.right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: var(--spike-w, 1000px);
+  max-width: none;
+  height: auto;
+
+  user-select: none;
+  pointer-events: none;
+
+  filter: drop-shadow(0 22px 34px rgba(0, 0, 0, 0.24));
+  opacity: 0.95;
+}
+
+.left {
+  left: var(--spike-side, -22%);
+}
+
+.right {
+  right: var(--spike-side, -22%);
+}
+
+@media (max-width: 768px) {
+  .left,
+  .right {
+    filter: drop-shadow(0 14px 20px rgba(0, 0, 0, 0.18));
+    opacity: 0.92;
+  }
+}
