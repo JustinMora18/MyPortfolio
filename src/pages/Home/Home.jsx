@@ -2,11 +2,16 @@ import Hero from "./sections/Hero/Hero";
 import About from "./sections/About/About";
 import Technologies from "./sections/Technologies/Technologies";
 import SectionSpikes from "../../components/SectionSpikes/SectionSpikes";
+import MarqueeBanners from "../../components/MarqueeBanners/MarqueeBanners";
+import GlobalNav from "../../components/GlobalNav/GlobalNav";
+import Web from "./sections/Web/Web";
+
 import styles from "./home.module.css";
 
 export default function Home() {
   return (
     <main className={styles.page}>
+      <GlobalNav />
       <section id="home" className={styles.heroWrap}>
         <Hero />
       </section>
@@ -20,6 +25,8 @@ export default function Home() {
       </section>
 
       <Technologies />
+      <MarqueeBanners />
+      <Web />
     </main>
   );
 }

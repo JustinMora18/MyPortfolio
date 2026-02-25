@@ -15,7 +15,6 @@ import SideVignette from "../../../../components/SideVignette/SideVignette";
 
 export default function Hero() {
   const heroRef = useRef(null);
-  const [menuOpen, setMenuOpen] = useState(false);
 
   const mvX = useMotionValue(0);
   const mvY = useMotionValue(0);
@@ -58,14 +57,6 @@ export default function Hero() {
   };
 
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth > 768) setMenuOpen(false);
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  useEffect(() => {
     const el = heroRef.current;
     if (!el) return;
 
@@ -85,45 +76,9 @@ export default function Hero() {
       style={{ "--mx": mx, "--my": my }}
       onMouseMove={onMove}
       onMouseLeave={onLeave}
-      onClick={() => setMenuOpen(false)}
     >
       <div className={styles.topLeft}>JM</div>
       <div className={styles.topRight}>Portfolio</div>
-
-      <nav className={styles.navPill} aria-label="Primary">
-        <a className={styles.navItem} href="#home">Home</a>
-        <a className={styles.navItem} href="#about">About</a>
-        <a className={styles.navItem} href="#web">Web</a>
-        <a className={styles.navItem} href="#designs">Designs</a>
-        <a className={styles.navItem} href="#photography">Photography</a>
-        <a className={styles.navItem} href="#questions">Got questions?</a>
-        <a className={styles.navItem} href="#contact">Contact</a>
-      </nav>
-
-      <button
-        className={styles.mobileMenuBtn}
-        type="button"
-        aria-label="Open menu"
-        aria-expanded={menuOpen}
-        onClick={(e) => {
-          e.stopPropagation();
-          setMenuOpen((v) => !v);
-        }}
-      >
-        <span className={styles.hamburger}>{menuOpen ? "✕" : "☰"}</span>
-      </button>
-
-      {menuOpen && (
-        <div className={styles.mobileMenu} onClick={(e) => e.stopPropagation()}>
-          <a className={styles.mobileMenuItem} href="#home" onClick={() => setMenuOpen(false)}>Home</a>
-          <a className={styles.mobileMenuItem} href="#about" onClick={() => setMenuOpen(false)}>About</a>
-          <a className={styles.mobileMenuItem} href="#web" onClick={() => setMenuOpen(false)}>Web</a>
-          <a className={styles.mobileMenuItem} href="#designs" onClick={() => setMenuOpen(false)}>Designs</a>
-          <a className={styles.mobileMenuItem} href="#photography" onClick={() => setMenuOpen(false)}>Photography</a>
-          <a className={styles.mobileMenuItem} href="#questions" onClick={() => setMenuOpen(false)}>Got questions?</a>
-          <a className={styles.mobileMenuItem} href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
-        </div>
-      )}
 
       <MiniSquares />
 

@@ -1,0 +1,150 @@
+.wrap {
+    background: #000;
+
+    position: relative;
+    width: 100%;
+    height: clamp(110px, 14vh, 160px);
+    overflow: visible;
+
+    margin-top: -1px;
+    margin-bottom: -1px;
+
+    pointer-events: none;
+    z-index: 6;
+
+    display: grid;
+    place-items: center;
+}
+
+.strip {
+    position: absolute;
+    left: 50%;
+    width: 120vw;
+    transform: translateX(-50%);
+    height: clamp(34px, 4.8vh, 48px);
+
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+
+    border-radius: 0;
+
+    box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.35),
+        0 6px 14px rgba(0, 0, 0, 0.22);
+}
+
+.strip:nth-child(1) {
+    top: 38%;
+    transform: translateX(-50%) rotate(-6deg);
+}
+
+.strip:nth-child(2) {
+    top: 60%;
+    transform: translateX(-50%) rotate(5deg);
+}
+
+.white {
+    background: #ffffff;
+    color: #0b0b0b;
+}
+
+.green {
+    background: #8dff2a;
+    color: #0b0b0b;
+}
+
+.marquee {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+}
+
+.track {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+
+    font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: clamp(12px, 1.2vw, 14px);
+
+    animation: scroll 20s linear infinite;
+    will-change: transform;
+}
+
+.track + .track {
+    margin-left: 0;
+}
+
+.reverse .track {
+    animation-name: scrollReverse;
+}
+
+.token {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+
+    padding-left: 20px;
+}
+
+.dot {
+    opacity: 0.8;
+}
+
+@keyframes scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-100%); }
+}
+
+@keyframes scrollReverse {
+    from { transform: translateX(-100%); }
+    to   { transform: translateX(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .track { animation: none; }
+}
+
+/* mobile tweaks */
+@media (max-width: 768px) {
+  .wrap {
+    /* slimmer on phones */
+    height: clamp(72px, 10vh, 98px);
+  }
+
+  .strip {
+    /* thinner strips; extra width so the rotated ends stay off-screen */
+    width: 160vw;
+    height: clamp(22px, 3.2vh, 30px);
+
+    box-shadow:
+      0 10px 24px rgba(0, 0, 0, 0.28),
+      0 4px 10px rgba(0, 0, 0, 0.16);
+  }
+
+  /* center the “X” intersection */
+  .strip:nth-child(1) {
+    top: 48%;
+    transform: translateX(-50%) rotate(-7deg);
+  }
+
+  .strip:nth-child(2) {
+    top: 56%;
+    transform: translateX(-50%) rotate(7deg);
+  }
+
+  .token {
+    gap: 8px;
+    padding-left: 12px;
+  }
+
+  .track {
+    font-size: clamp(10px, 2.8vw, 11.5px);
+    animation-duration: 28s;
+  }
+}
