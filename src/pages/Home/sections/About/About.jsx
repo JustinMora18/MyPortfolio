@@ -1,7 +1,9 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
+
 import styles from "./about.module.css";
 
+import justinPhoto from "../../../../assets/images/aboutMe/justin.pngPhoto.png";
 import githubLogo from "../../../../assets/images/aboutMe/GithubLogo.svg";
 import linkedinLogo from "../../../../assets/images/aboutMe/LinkedinLogo.svg";
 import cvLogo from "../../../../assets/images/aboutMe/CVFileLogo.svg";
@@ -39,10 +41,11 @@ export default function About() {
     mvY.set(0);
   };
 
+  const [showLinks, setShowLinks] = useState(false);
+
   return (
     <section className={styles.about} id="about">
       <SideVignette className={styles.sideVignette} />
-
       <div className={styles.bottomFade} aria-hidden="true" />
 
       <div className={styles.inner}>
@@ -57,6 +60,20 @@ export default function About() {
             x: translateX,
             y: translateY,
           }}
+          onViewportEnter={() => {
+            if (showLinks) return;
+            window.setTimeout(() => setShowLinks(true), 220);
+          }}
+
+          initial={{ opacity: 0, y: 60, scale: 0.92, filter: "blur(6px)" }}
+          whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+          viewport={{ once: true, amount: 0.45 }}
+          transition={{
+            type: "spring",
+            stiffness: 260,
+            damping: 12,
+            mass: 0.65,
+          }}
         >
           <div className={styles.windowTop}>
             <div className={styles.dots} aria-hidden="true">
@@ -70,10 +87,14 @@ export default function About() {
           </div>
 
           <div className={styles.windowBody}>
+            {/* LEFT: photo */}
             <div className={styles.left}>
-              <div className={styles.photoFrame} />
+              <div className={styles.photoWrap} aria-hidden="true">
+                <img className={styles.photo} src={justinPhoto} alt="" />
+              </div>
             </div>
 
+            {/* RIGHT: text */}
             <div className={styles.right}>
               <p className={styles.text}>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisque
@@ -83,22 +104,48 @@ export default function About() {
                 egestas.
               </p>
             </div>
+
+            {/* LINKS - buttons */}
+            <div className={styles.links}>
+              <motion.a
+                className={styles.linkBtn}
+                href="#"
+                aria-label="GitHub"
+                style={{ "--icon": `url("${githubLogo}")` }}
+                initial={{ opacity: 0, y: 14, scale: 0.9 }}
+                animate={showLinks ? { opacity: 1, y: 0, scale: 1 } : {}}
+                transition={{ type: "spring", stiffness: 380, damping: 18, delay: 0.18 }}
+              >
+                <img src={githubLogo} alt="" />
+              </motion.a>
+
+              <motion.a
+                className={styles.linkBtn}
+                href="#"
+                aria-label="LinkedIn"
+                style={{ "--icon": `url("${linkedinLogo}")` }}
+                initial={{ opacity: 0, y: 14, scale: 0.9 }}
+                animate={showLinks ? { opacity: 1, y: 0, scale: 1 } : {}}
+                transition={{ type: "spring", stiffness: 380, damping: 18, delay: 0.30 }}
+              >
+                <img src={linkedinLogo} alt="" />
+              </motion.a>
+
+              <motion.a
+                className={styles.linkBtn}
+                href="#"
+                aria-label="Download CV"
+                style={{ "--icon": `url("${cvLogo}")` }}
+                initial={{ opacity: 0, y: 14, scale: 0.9 }}
+                animate={showLinks ? { opacity: 1, y: 0, scale: 1 } : {}}
+                transition={{ type: "spring", stiffness: 380, damping: 18, delay: 0.42 }}
+              >
+                <img src={cvLogo} alt="" />
+              </motion.a>
+            </div>
           </div>
 
-          <div className={styles.links}>
-            <a className={styles.linkBtn} href="#" aria-label="GitHub">
-              <img src={githubLogo} alt="" />
-            </a>
-
-            <a className={styles.linkBtn} href="#" aria-label="LinkedIn">
-              <img src={linkedinLogo} alt="" />
-            </a>
-
-            <a className={styles.linkBtn} href="#" aria-label="Download CV">
-              <img src={cvLogo} alt="" />
-            </a>
-          </div>
-
+          <div className={styles.blueOverlay} aria-hidden="true" />
           <div className={styles.windowVignette} aria-hidden="true" />
         </motion.div>
       </div>

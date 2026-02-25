@@ -1,5 +1,6 @@
 import Hero from "./sections/Hero/Hero";
 import About from "./sections/About/About";
+import Technologies from "./sections/Technologies/Technologies";
 import SectionSpikes from "../../components/SectionSpikes/SectionSpikes";
 import styles from "./home.module.css";
 
@@ -17,6 +18,8 @@ export default function Home() {
       <section id="about" className={styles.aboutWrap}>
         <About />
       </section>
+
+      <Technologies />
     </main>
   );
 }
