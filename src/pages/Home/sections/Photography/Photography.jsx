@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState } from "react";
 import { motion } from "motion/react";
-import styles from "./photography.module.css";
+import styles from "./Photography.module.css";
 
 import photographyBackground from "../../../../assets/images/photography/photographyBackground.png";
 
