@@ -8,6 +8,8 @@ import Web from "./sections/Web/Web";
 import Photography from "./sections/Photography/Photography";
 import MyAI from "./sections/MyAI/MyAI";
 import Designs from "./sections/Designs/Designs";
+import Contact from "./sections/Contact/Contact";
+import Footer from "./sections/Footer/Footer";
 
 import styles from "./home.module.css";
 
@@ -33,6 +35,8 @@ export default function Home() {
       <Designs />
       <Photography />
       <MyAI />
+      <Contact />
+      <Footer />
     </main>
   );
 }

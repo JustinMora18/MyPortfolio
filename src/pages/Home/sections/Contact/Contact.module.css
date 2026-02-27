@@ -1,0 +1,206 @@
+.wrap {
+    position: relative;
+    min-height: 100svh;
+    overflow: hidden;
+  
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+  }
+  
+  .inner {
+    width: min(1280px, 94vw);
+    margin: 0 auto;
+  
+    padding-top: clamp(280px, 26vh, 400px);
+    padding-bottom: clamp(70px, 10vh, 140px);
+  
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: clamp(24px, 4vw, 56px);
+  
+    align-items: center;
+  }
+  
+  /* RIGHT SIDE (text) */
+  .copy {
+    text-align: center;
+  }
+  
+  .title {
+    font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    font-size: clamp(34px, 5vw, 76px);
+    color: rgba(0, 0, 0, 0.86);
+    line-height: 0.95;
+    margin: 0;
+    text-shadow: 0 8px 28px rgba(0,0,0,0.10);
+  }
+  
+  /* WINDOW */
+  .window {
+    width: 100%;
+    max-width: 560px;
+    border-radius: 18px;
+  
+    background: rgba(25, 25, 25, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+  
+    box-shadow:
+      0 34px 95px rgba(0, 0, 0, 0.35),
+      0 12px 26px rgba(0, 0, 0, 0.18);
+  
+    overflow: hidden;
+    justify-self: start;
+  }
+  
+  .topBar {
+    height: 54px;
+    display: grid;
+    grid-template-columns: 90px 1fr 90px;
+    align-items: center;
+  
+    padding: 0 14px;
+  
+    background: rgba(0, 0, 0, 0.35);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  
+  .dots {
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .dotRed,
+  .dotYellow,
+  .dotGreen {
+    width: 12px;
+    height: 12px;
+    border-radius: 999px;
+    display: inline-block;
+  }
+  .dotRed { background: #ff3b30; }
+  .dotYellow { background: #ffcc00; }
+  .dotGreen { background: #34c759; }
+  
+  .topTitle {
+    text-align: center;
+    font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    color: rgba(255, 255, 255, 0.88);
+  }
+  .topSpacer { display: block; }
+  
+  .form {
+    padding: 22px 22px 18px;
+    display: grid;
+    gap: 18px;
+  }
+  
+  .honey {
+    display: none;
+  }
+  
+  .field {
+    display: grid;
+    gap: 8px;
+  }
+  
+  .label {
+    font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.82);
+  }
+  
+  .inputLine,
+  .textarea {
+    width: 100%;
+    border: none;
+    outline: none;
+  
+    background: transparent;
+    color: rgba(255, 255, 255, 0.92);
+  
+    font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-size: 14px;
+  
+    padding: 6px 0;
+  }
+  
+  .textarea {
+    resize: none;
+    padding-top: 2px;
+  }
+  
+  .underline {
+    height: 1px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.22);
+  }
+  
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 2px;
+  }
+  
+  .sendBtn {
+    height: 44px;
+    padding: 0 18px;
+    border: none;
+    cursor: pointer;
+    border-radius: 999px;
+  
+    background: rgba(210, 255, 51, 0.95);
+    color: rgba(0, 0, 0, 0.86);
+  
+    font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+  
+    transition: transform 160ms ease, opacity 160ms ease;
+  }
+  
+  .sendBtn:hover { transform: translateY(-1px); }
+  .sendBtn:disabled { opacity: 0.6; cursor: default; transform: none; }
+  
+  .ok {
+    color: rgba(210, 255, 51, 0.95);
+    font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-size: 13px;
+  }
+  
+  .err {
+    color: rgba(255, 120, 120, 0.95);
+    font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-size: 13px;
+  }
+  
+  /* MOBILE */
+  @media (max-width: 900px) {
+    .inner {
+      grid-template-columns: 1fr;
+      padding-top: 220px;
+      align-items: start;
+    }
+  
+    .window {
+      justify-self: center;
+      max-width: 560px;
+    }
+  
+    .copy {
+      order: -1;
+      text-align: left;
+    }
+  
+    .title {
+      text-align: left;
+      line-height: 1;
+    }
+  }
