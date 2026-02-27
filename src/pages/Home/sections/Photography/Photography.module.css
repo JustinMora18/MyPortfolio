@@ -1,0 +1,144 @@
+.photography {
+    position: relative;
+    min-height: 100svh;
+    overflow: hidden;
+  
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+  }
+  
+  .inner {
+    width: min(1200px, 92vw);
+    margin: 0 auto;
+    padding-top: clamp(90px, 10vh, 140px);
+    padding-bottom: clamp(40px, 7vh, 90px);
+    text-align: center;
+  
+    position: relative;
+    z-index: 2;
+  }
+  
+  .title {
+    --title-shift: -10px;
+  
+    font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    font-size: clamp(22px, 3vw, 34px);
+    color: rgba(255, 255, 255, 0.95);
+  
+    transform: translateY(var(--title-shift));
+    margin: clamp(60px, 7vh, 110px) 0 clamp(10px, 1.6vh, 16px);
+  }
+  
+  .stage {
+    position: relative;
+    width: 100%;
+    height: clamp(520px, 66vh, 760px);
+    margin-top: -34px;
+  }
+  
+  .card {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    transform: translate(-50%, -50%) rotate(var(--r));
+    will-change: transform;
+    user-select: none;
+  
+    filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.28));
+  
+    --w: clamp(220px, 20vw, 320px);
+    width: var(--w);
+  }
+  
+  .dragLayer {
+    width: fit-content;
+    height: fit-content;
+  
+    cursor: grab;
+    user-select: none;
+    touch-action: none;
+  }
+  
+  .dragLayer:active {
+    cursor: grabbing;
+  }
+  
+  .thumb {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    height: auto;
+  
+    object-fit: cover;
+    object-position: center;
+  
+    border-radius: 14px;
+    border: none;
+    outline: none;
+  
+    background: rgba(0, 0, 0, 0.18);
+  }
+  
+  .cardTL { --x: 20%; --y: 36%; --r: 0deg; }
+  .cardC1 { --x: 50%; --y: 36%; --r: 0deg; }
+  .cardTR { --x: 80%; --y: 36%; --r: 0deg; }
+  
+  .cardBL { --x: 20%; --y: 66%; --r: 0deg; }
+  .cardC2 { --x: 50%; --y: 66%; --r: 0deg; }
+  .cardBR { --x: 80%; --y: 66%; --r: 0deg; }
+  
+  .desc {
+    margin: clamp(10px, 2.2vh, 18px) auto 0;
+    max-width: 900px;
+    font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(0, 0, 0, 0.65);
+  }
+  
+  @media (max-width: 768px) {
+    .inner {
+      padding-top: 90px;
+      padding-bottom: 60px;
+    }
+  
+    .stage {
+      height: auto;
+      display: grid;
+      gap: 14px;
+      justify-items: center;
+      margin-top: 0;
+    }
+  
+    .card {
+      position: static;
+      transform: none;
+      filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.22));
+    }
+  
+    .dragLayer {
+      cursor: default;
+      touch-action: auto;
+    }
+  
+    .thumb {
+      width: min(360px, 86vw);
+      aspect-ratio: 16 / 9;
+      height: auto;
+      border-radius: 14px;
+    }
+  
+    .desc {
+      color: rgba(0, 0, 0, 0.75);
+      padding: 0 10px;
+    }
+  
+    .title {
+      --title-shift: -34px;
+      margin: 0 0 12px;
+    }
+  }

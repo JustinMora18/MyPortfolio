@@ -5,6 +5,7 @@ import SectionSpikes from "../../components/SectionSpikes/SectionSpikes";
 import MarqueeBanners from "../../components/MarqueeBanners/MarqueeBanners";
 import GlobalNav from "../../components/GlobalNav/GlobalNav";
 import Web from "./sections/Web/Web";
+import Photography from "./sections/Photography/Photography";
 import Designs from "./sections/Designs/Designs";
 
 
@@ -30,6 +31,7 @@ export default function Home() {
       <MarqueeBanners />
       <Web />
       <Designs />
+      <Photography />
     </main>
   );
 }

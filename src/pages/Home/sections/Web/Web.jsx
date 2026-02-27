@@ -173,7 +173,7 @@ export default function Web() {
       style={{ backgroundImage: `url(${webBackground})` }}
     >
       <div className={styles.inner}>
-        <h2 className={styles.title}>WEBS</h2>
+        <h2 className={styles.title}>WEB</h2>
 
         <div
           className={styles.stage}
@@ -218,7 +218,7 @@ export default function Web() {
           ))}
         </div>
 
-        <p className={styles.desc}>Some personal projects i&apos;ve made.</p>
+        <p className={styles.desc}>Some Projects i&apos;ve made.</p>
       </div>
 
       <ProjectModal

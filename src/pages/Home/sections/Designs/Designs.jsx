@@ -144,7 +144,7 @@ export default function Designs() {
             style={{ backgroundImage: `url(${designBackground})` }}
         >
             <div className={styles.inner}>
-                <h2 className={styles.title}>DESIGNS</h2>
+                <h2 className={styles.title}>DESIGN</h2>
 
                 <div className={styles.stage} style={{ pointerEvents: modalOpen ? "none" : "auto" }}>
                     {cards.map((c, i) => (
@@ -181,7 +181,7 @@ export default function Designs() {
                     ))}
                 </div>
 
-                <p className={styles.desc}>Some design work I&apos;ve done.</p>
+                <p className={styles.desc}>Some Designs I&apos;ve done.</p>
             </div>
 
             <ProjectModal
