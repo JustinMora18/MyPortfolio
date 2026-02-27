@@ -13,6 +13,7 @@ export default async (req) => {
     return new Response(JSON.stringify({ error: "Use POST" }), { status: 405, headers });
 
   const apiKey = process.env.OPENAI_API_KEY;
+  console.log("KEY prefix:", apiKey?.slice(0, 12));
   if (!apiKey) {
     return new Response(JSON.stringify({ error: "Missing OPENAI_API_KEY env var on Netlify." }), {
       status: 500,
@@ -114,3 +115,4 @@ ${PORTFOLIO_CONTEXT}
     );
   }
 };
+

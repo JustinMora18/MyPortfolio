@@ -6,8 +6,8 @@ import MarqueeBanners from "../../components/MarqueeBanners/MarqueeBanners";
 import GlobalNav from "../../components/GlobalNav/GlobalNav";
 import Web from "./sections/Web/Web";
 import Photography from "./sections/Photography/Photography";
+import MyAI from "./sections/MyAI/MyAI";
 import Designs from "./sections/Designs/Designs";
-
 
 import styles from "./home.module.css";
 
@@ -32,6 +32,7 @@ export default function Home() {
       <Web />
       <Designs />
       <Photography />
+      <MyAI />
     </main>
   );
 }
