@@ -97,11 +97,7 @@ export default function About() {
             {/* RIGHT: text */}
             <div className={styles.right}>
               <p className={styles.text}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisque
-                faucibus ex sapien vitae pellentesque sem placerat. In id cursus
-                mi pretium tellus duis convallis. Tempus leo eu aenean sed diam
-                urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum
-                egestas.
+                I’m Justin Mora, a Computer Science student focused on web development and Graphic Design. I enjoy creating clean, user-friendly digital experiences using technologies like React, and I’m equally passionate about design—using tools like Figma and Adobe Illustrator for social media visuals, branding, and creative concepts. I blend code with creativity through graphic design and photography, and I’m adaptable, quick to learn, and always looking to grow through new projects and challenges.
               </p>
             </div>
 
@@ -109,7 +105,7 @@ export default function About() {
             <div className={styles.links}>
               <motion.a
                 className={styles.linkBtn}
-                href="#"
+                href="https://github.com/JustinMora18"
                 aria-label="GitHub"
                 style={{ "--icon": `url("${githubLogo}")` }}
                 initial={{ opacity: 0, y: 14, scale: 0.9 }}
@@ -121,7 +117,7 @@ export default function About() {
 
               <motion.a
                 className={styles.linkBtn}
-                href="#"
+                href="https://www.linkedin.com/in/morajustin/"
                 aria-label="LinkedIn"
                 style={{ "--icon": `url("${linkedinLogo}")` }}
                 initial={{ opacity: 0, y: 14, scale: 0.9 }}

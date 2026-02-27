@@ -11,6 +11,7 @@ import javaLogo from "../../../../assets/images/techLogos/java_logo.png";
 import photoshopLogo from "../../../../assets/images/techLogos/photoshop_logo.png";
 import procreateLogo from "../../../../assets/images/techLogos/porcreate_logo.png";
 import reactLogo from "../../../../assets/images/techLogos/react_logo.png";
+import lightroomLogo from "../../../../assets/images/techLogos/lightroomLogo.png";
 
 export default function Technologies() {
     const [showLogos, setShowLogos] = useState(false);
@@ -24,6 +25,7 @@ export default function Technologies() {
             { id: "react", src: reactLogo, alt: "React" },
             { id: "ps", src: photoshopLogo, alt: "Photoshop" },
             { id: "ai", src: illustratorLogo, alt: "Illustrator" },
+            { id: "lr", src: lightroomLogo, alt: "Lightroom" },
             { id: "procreate", src: procreateLogo, alt: "Procreate" },
             { id: "figma", src: figmaLogo, alt: "Figma" },
         ],

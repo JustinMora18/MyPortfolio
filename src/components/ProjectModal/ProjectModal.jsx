@@ -10,6 +10,8 @@ const TAG_DOT = {
     CSS: "#ffd36a",
     JS: "#ffd36a",
     JavaScript: "#ffd36a",
+    Photoshop: "#2e8cff",
+    Procreate: "#a78bff",
 };
 
 export default function ProjectModal({
@@ -95,27 +97,29 @@ export default function ProjectModal({
 
                         <div className={styles.body}>
                             <div className={styles.media}>
-                                {hasImages ? (
-                                    <AnimatePresence mode="wait">
-                                        <motion.img
-                                            key={currentSrc}
-                                            className={styles.heroImg}
-                                            src={currentSrc}
-                                            alt=""
-                                            draggable={false}
-                                            initial={{ opacity: 0, scale: 0.995 }}
-                                            animate={{ opacity: 1, scale: 1 }}
-                                            exit={{ opacity: 0, scale: 0.995 }}
-                                            transition={{ duration: 0.25 }}
-                                        />
-                                    </AnimatePresence>
-                                ) : (
-                                    <div className={styles.mediaEmpty} />
-                                )}
+                                <div className={styles.mediaViewport}>
+                                    {hasImages ? (
+                                        <AnimatePresence mode="wait">
+                                            <motion.img
+                                                key={currentSrc}
+                                                className={styles.heroImg}
+                                                src={currentSrc}
+                                                alt=""
+                                                draggable={false}
+                                                initial={{ opacity: 0, scale: 0.995 }}
+                                                animate={{ opacity: 1, scale: 1 }}
+                                                exit={{ opacity: 0, scale: 0.995 }}
+                                                transition={{ duration: 0.25 }}
+                                            />
+                                        </AnimatePresence>
+                                    ) : (
+                                        <div className={styles.mediaEmpty} />
+                                    )}
+                                </div>
                             </div>
-                            
+
                             <p className={styles.desc}>{description}</p>
-                            
+
                             {showTags && tags.length > 0 && (
                                 <div className={styles.tags} aria-label="Technologies used">
                                     {tags.map((t) => (
@@ -135,7 +139,7 @@ export default function ProjectModal({
                         </div>
                     </motion.div>
                 </motion.div>
-            )}  
+            )}
         </AnimatePresence>
     );
 }

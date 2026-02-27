@@ -119,7 +119,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, delay: 0.25 }}
         >
-          2026
+          2025-2026
         </motion.p>
       </div>
 
